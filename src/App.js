@@ -1,7 +1,11 @@
+import Nav from "./components/Nav/Nav";
+
 function App() {
-  return (
-   <div>TimeTable</div>
-  );
+  return (  
+    <div>
+    <Nav />
+   </div>
+  )
 }
 
 export default App;
