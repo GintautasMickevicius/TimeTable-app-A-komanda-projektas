@@ -1,6 +1,7 @@
 import React from 'react'
-import "./LostPassword.css"
-import Button from 'react-bootstrap/Button';
+import "./index.css"
+import React, { Component } from "react";
+
 
 const LostPassword = () => {
     return (
