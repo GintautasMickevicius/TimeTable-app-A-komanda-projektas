@@ -4,6 +4,7 @@ import SignUp from './components/SignUp/SignUp'
 import Nav from "./components/Nav/Nav";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Table from "./components/table/Table";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // import SignUp from "./components/signup.component";
@@ -20,6 +21,7 @@ function App() {
               <Route path="/sign-in" element={<Login />} />
               <Route path="/lostpassword" element={<LostPassword />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="table" element={<Table/>} />
             </Routes>
           </div>
         </div>
@@ -30,3 +32,5 @@ function App() {
 }
 
 export default App;
+
+

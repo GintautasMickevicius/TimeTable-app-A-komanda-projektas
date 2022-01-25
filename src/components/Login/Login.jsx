@@ -25,7 +25,7 @@ export default class Login extends Component {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block">Prisijungti</button>
+                <Link to="/table"><button type="submit" className="btn btn-primary btn-block">Prisijungti</button></Link>
                 <p className="forgot-password text-right">
                     Pamiršote <Link to="/lostpassword">slaptažodį?</Link>
                 </p>

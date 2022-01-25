@@ -8,27 +8,27 @@ const SignUp = () => {
                 <h3>Registracija</h3>
 
                 <div className="form-group">
-                    <label></label>
+                    <label>Vardas</label>
                     <input type="text" className="form-control" placeholder="Vardas" />
                 </div>
 
                 <div className="form-group">
-                    <label></label>
+                    <label>Pavardė</label>
                     <input type="text" className="form-control" placeholder="Pavardė" />
                 </div>
 
                 <div className="form-group">
-                    <label></label>
+                    <label>E. pašto adresas</label>
                     <input type="email" className="form-control" placeholder="El. pašto adresas" />
                 </div>
 
                 <div className="form-group">
-                    <label></label>
+                    <label>Slaptažodis</label>
                     <input type="password" className="form-control" placeholder="Slaptažodis" />
                 </div>
 
                 <div className="form-group">
-                    <label></label>
+                    <label>Pakartoti slaptažodį</label>
                     <input type="password" className="form-control" placeholder="Pakartoti slaptažodį" />
                 </div>
                 
