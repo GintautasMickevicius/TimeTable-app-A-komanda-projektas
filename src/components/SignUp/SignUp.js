@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const SignUp = () => {
     return (
@@ -31,8 +32,10 @@ const SignUp = () => {
                     <input type="password" className="form-control" placeholder="Pakartoti slaptažodį" />
                 </div>
                 
-                <button type="submit" className="btn btn-primary btn-block">Registruoti</button>
-                <button type="submit" className="btn btn-primary btn-block">Grįžti į pradinį puslapį</button>
+                <p><button type="submit" className="btn btn-primary btn-block">Registruoti</button></p>  
+                <Link to='/'>
+               <p><button type="submit" className="btn btn-primary btn-block">Grįžti į pradinį puslapį</button></p>
+                </Link>
             </form>
         </div>
     )

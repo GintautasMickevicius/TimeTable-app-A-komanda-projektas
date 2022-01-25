@@ -1,7 +1,7 @@
-import React from 'react'
-import "./index.css"
-import React, { Component } from "react";
-
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import './LostPassword.css';
+import { Link } from 'react-router-dom';
 
 const LostPassword = () => {
     return (
@@ -13,7 +13,10 @@ const LostPassword = () => {
             <div>
             <input type="email" id="email" name="email"></input>
             </div>
-            <Button variant="primary">Atkurti slaptažodį</Button>
+            <p><Button variant="primary">Atkurti slaptažodį</Button></p>
+            <Link to='/'>
+            <p><Button variant="primary">Grįžti į pradinį puslapį</Button></p>
+           </Link>
         </div>
     )
 }
