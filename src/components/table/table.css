@@ -1,0 +1,73 @@
+
+.table-group h1 {
+    display: flex;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #F7F7F7;
+}
+.filter h4 {
+    display: flex;
+    padding-left: 15px;
+    background-color: #F7F7F7;
+}
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #E5E5E5;
+    background-color: #F7F7F7;
+}
+.form-select {
+    width: 200px;
+    margin-left: 25px;
+    border-bottom: 1px solid #E5E5E5;
+}
+.work-form {
+    background-color: #F7F7F7;
+    border-bottom: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
+}
+.work-form button {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E5E5E5;
+    margin-left: 15px;
+}
+.table-group {
+    background-color: #F7F7F7;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+h5 {
+    display: flex;
+    border-bottom: 1px solid #E5E5E5;
+    background-color: #F7F7F7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+}
+.form-container input {
+    margin-left: 10px;
+    width: 99%!important;
+}
+.form-container select{
+    width: 99%!important;
+    margin-left: 10px;
+}
+.form-container h6 {
+    display: flex;
+    padding-left: 15px;
+}
+.mysize { 
+    width: 99%!important;
+    height: 150px!important;  
+    margin-left: 10px;
+    margin-bottom: 25px;
+ }
+
+ .form-container .btn{
+     justify-content: center;
+     width: 4%!important;
+     display: flex;
+ }
