@@ -18,7 +18,7 @@ const SignUp = () => {
                 </div>
 
                 <div className="form-group">
-                    <label>E. pašto adresas</label>
+                    <label></label>
                     <input type="email" className="form-control" placeholder="El. pašto adresas" />
                 </div>
 
