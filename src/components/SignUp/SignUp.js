@@ -1,45 +1,67 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import './SignUp.css';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Form, Button, Card } from "react-bootstrap";
+import "./SignUp.css"; 
+import { createUserWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
+import { auth } from '../../firebase'
 
 const SignUp = () => {
-    return (
-        <div>
-            <form>
-                <h3>Registracija</h3>
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [user, setUser] = useState({});
 
-                <div className="form-group">
-                    <label></label>
-                    <input type="text" className="form-control" placeholder="Vardas" />
-                </div>
+  onAuthStateChanged(auth, (currentUser) =>{
+    setUser(currentUser);
+  });
 
-                <div className="form-group">
-                    <label></label>
-                    <input type="text" className="form-control" placeholder="Pavardė" />
-                </div>
 
-                <div className="form-group">
-                    <label></label>
-                    <input type="email" className="form-control" placeholder="El. pašto adresas" />
-                </div>
 
-                <div className="form-group">
-                    <label></label>
-                    <input type="password" className="form-control" placeholder="Slaptažodis" />
-                </div>
+  const register = async () => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword
+      );
+      console.log(user);
+      alert("Registracija pavyko!");
 
-                <div className="form-group">
-                    <label></label>
-                    <input type="password" className="form-control" placeholder="Pakartoti slaptažodį" />
-                </div>
-                
-                <p><button type="submit" className="btn btn-primary btn-block">Registruoti</button></p>  
-                <Link to='/'>
-               <p><button type="submit" className="btn btn-primary btn-block">Grįžti į pradinį puslapį</button></p>
-                </Link>
-            </form>
-        </div>
-    )
-}
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
-export default SignUp
+
+
+  return (
+    <>
+      <Card>
+        <Card.Body>
+          <h2 className="text-center mb-4">Registracija</h2>
+          <Form>
+            <Form.Group id="email">
+              <Form.Label>El.paštas</Form.Label>
+              <Form.Control type="email" onChange={(event) => {
+            setRegisterEmail(event.target.value);
+          }} required />
+            </Form.Group>
+            <Form.Group id="password">
+              <Form.Label>Slaptažodis</Form.Label>
+              <Form.Control type="password"  onChange={(event) => {
+            setRegisterPassword(event.target.value);
+          }} required />
+            </Form.Group><br></br>
+            <Button onClick={register} className="w-100" type="submit">
+              Registruotis
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+      <div className="w-100 text-center mt-2">
+        Jau turite paskyra? <Link to="/signin">Prisijunkite</Link>
+      </div>
+    </>
+  );
+};
+
+export default SignUp;

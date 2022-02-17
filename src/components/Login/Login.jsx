@@ -1,36 +1,63 @@
-import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
+import { Link } from "react-router-dom";
+import { Form, Button, Card } from "react-bootstrap";
+import { auth } from '../../firebase'
 
+const Login = () => {
 
-export default class Login extends Component {
-    render() {
-        return (
-            <form>
-                <h3>Prisijungti</h3>
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
 
-                <div className="form-group">
-                    <label></label>
-                    <input type="email" className="form-control" placeholder="El. pašto adresas" />
-                </div>
+    const [user, setUser] = useState({});
 
-                <div className="form-group">
-                    <label></label>
-                    <input type="password" className="form-control" placeholder="Slaptažodis" />
-                </div>
+    onAuthStateChanged(auth, (currentUser) =>{
+      setUser(currentUser);
+    });
 
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Prisiminti mane</label>
-                    </div>
-                </div>
+    const login = async () => {
+        try {
+          const user = await signInWithEmailAndPassword(
+            auth,
+            loginEmail,
+            loginPassword
+          );
+          console.log(user);
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
 
-                <Link to="/table"><button type="submit" className="btn btn-primary btn-block">Prisijungti</button></Link>
-                <p className="forgot-password text-right">
-                    Pamiršote <Link to="/lostpassword">slaptažodį?</Link>
-                </p>
-                 <Link to="/signup">Registruotis</Link>
-            </form>
-        );
-    }
+  
+    return (
+        <>
+          <Card>
+            <Card.Body>
+              <h2 className="text-center mb-4">Prisijunkite</h2>
+              <Form>
+                <Form.Group id="email">
+                  <Form.Label>El.paštas</Form.Label>
+                  <Form.Control type="email" onChange={(event) => {
+                setLoginEmail(event.target.value);
+              }} required />
+                </Form.Group>
+                <Form.Group id="password">
+                  <Form.Label>Slaptažodis</Form.Label>
+                  <Form.Control type="password"  onChange={(event) => {
+                setLoginPassword(event.target.value);
+              }} required />
+                </Form.Group><br></br>
+                <Button onClick={login} className="w-100" type="submit">
+                  Prisijungti
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+          <div className="w-100 text-center mt-2">
+              Neturite paskyros? <Link to="/signup">Registruotis</Link>
+            </div>
+        </>
+  )
 }
+
+export default Login

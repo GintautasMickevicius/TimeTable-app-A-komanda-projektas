@@ -7,10 +7,13 @@ import './App.css';
 import Table from "./components/table/Table";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
+
 // import SignUp from "./components/signup.component";
 
 function App() {
   return (  
+
     <Router> 
       <div className="App">
       <Nav />
@@ -18,15 +21,17 @@ function App() {
           <div className="auth-inner">
             <Routes>
               <Route path='/' element={<Login />} />
-              <Route path="/sign-in" element={<Login />} />
+              <Route path="/signin" element={<Login />} />
               <Route path="/lostpassword" element={<LostPassword />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="table" element={<Table/>} />
             </Routes>
           </div>
         </div>
-        </div></Router>
-    
+        </div>
+        </Router>
+
+
 
   )
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState }from 'react';
-import './table.css'
+// import './table.css'
 
 
 export const View = ({workss}) => {
