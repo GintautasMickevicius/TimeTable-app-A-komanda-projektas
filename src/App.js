@@ -6,16 +6,31 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Table from "./components/table/Table";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import {onAuthStateChanged} from 'firebase/auth';
+import {auth} from './components/firebase/firebase';
+import {useState, useEffect} from 'react'
+import { AuthProvider } from './components/firebase/AuthContext';
+import VerifyEmail from "./components/verifyEmail/VerifyEmail";
 
 
 // import SignUp from "./components/signup.component";
 
 function App() {
+
+  const [currentUser, setCurrentUser] = useState(null)
+  const [timeActive, setTimeActive] = useState(false)
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user)
+    })
+  }, [])
+
   return (  
 
     <Router> 
       <div className="App">
+      <AuthProvider value={{currentUser, timeActive, setTimeActive}}>
       <Nav />
         <div className="auth-wrapper">
           <div className="auth-inner">
@@ -25,9 +40,11 @@ function App() {
               <Route path="/lostpassword" element={<LostPassword />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="table" element={<Table/>} />
+              <Route path="/verify-email" element={ <VerifyEmail /> } />
             </Routes>
           </div>
         </div>
+        </AuthProvider>
         </div>
         </Router>
 
