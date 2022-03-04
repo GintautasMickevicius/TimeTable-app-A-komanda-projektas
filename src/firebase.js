@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from 'firebase/auth'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Initialize Firebase
 const firebaseConfig = {
