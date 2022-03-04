@@ -2,7 +2,7 @@ import Login from "./components/Login/Login";
 import LostPassword from './components/LostPassword/LostPassword';
 import SignUp from './components/SignUp/SignUp'
 import Nav from "./components/Nav/Nav";
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Table from "./components/table/Table";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

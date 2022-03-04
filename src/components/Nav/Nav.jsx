@@ -5,6 +5,7 @@ import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth } from '../../firebase'
 
+
 const Nav = () => {
 
   const [user, setUser] = useState({});
@@ -20,7 +21,7 @@ const Nav = () => {
 
   return (
     <div>
-      <Navbar variant="dark" bg="dark">
+      <Navbar collapseOnSelect fixed='top' variant="dark" bg="dark">
         <Container fluid>
         <Link style={{ textDecoration: 'none' }} to='/'>
           <Navbar.Brand>TimeTable</Navbar.Brand>
