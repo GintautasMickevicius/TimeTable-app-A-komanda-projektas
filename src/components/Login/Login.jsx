@@ -28,7 +28,7 @@ const Login = () => {
           })
         .catch(err => alert(err.message))
       }else{
-        navigate('/table')
+        navigate('/tables')
       }
       })
       .catch(err => setError(err.message))
