@@ -1,23 +1,9 @@
 import React from "react";
-import { useState } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { auth } from '../../firebase'
 
 
 const Nav = () => {
-
-  const [user, setUser] = useState({});
-
-  onAuthStateChanged(auth, (currentUser) =>{
-    setUser(currentUser);
-  });
-
-  const logout = async () => {
-
-    await signOut(auth);
-  };
 
   return (
     <div>
