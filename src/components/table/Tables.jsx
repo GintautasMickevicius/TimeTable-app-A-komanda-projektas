@@ -3,10 +3,12 @@ import {useAuthValue} from '../firebase/AuthContext'
 import { signOut } from 'firebase/auth' 
 import { auth } from '../firebase/firebase'
 import { useNavigate }  from 'react-router-dom'
-// import './table.css'
+import { Table } from 'react-bootstrap'
+// import './table.css
 
 
-export const View = ({workss}) => {
+export const View = ({workss, deleteWork }) => {
+    
     return workss.map(worki =>(
         <tr key={worki.date}>
             <td>{worki.date}</td>
@@ -15,10 +17,10 @@ export const View = ({workss}) => {
             <td>{worki.test}</td>
             <td>{worki.from}</td>
             <td>{worki.too}</td>
+            <td><button className='delete-btn btn-danger btn-sm delete' onClick={()=>deleteWork(worki.date)}>X</button></td>
         </tr>
     ))
 }
-
 
 
 
@@ -32,7 +34,15 @@ const getDatafromLS=()=>{
 }
 
 
-const Table = () => {
+const Tables = () => {
+
+    
+    const deleteWork=(date)=>{
+        const filteredWorks=workss.filter((element,index)=>{
+          return element.date !== date
+        })
+        setWorkss(filteredWorks);
+      }
 
     const {currentUser} = useAuthValue()
 
@@ -46,6 +56,7 @@ const Table = () => {
     const [test, setTest] = useState('')
     const [from, setFrom] = useState('')
     const [too, setToo] = useState('')
+    
 
     const handleAddWorkSubmit=(e)=>{
         e.preventDefault();
@@ -67,13 +78,15 @@ const Table = () => {
         setToo('');
     }
 
+
+
     useEffect(()=>{
         localStorage.setItem('workss',JSON.stringify(workss));
         if(!currentUser) navigate('/');
       },[workss])
 
-    
 
+      
   return (
     <div className='container-fluid'>
         
@@ -86,40 +99,10 @@ const Table = () => {
             <strong>Email verified: </strong>
             {`${currentUser?.emailVerified}`}
           </p>
-          <button className='btn btn-danger' onClick={() => {navigate('/'); signOut(auth)}}>Sign Out</button>
+          <button className='btn btn-danger mb-3' onClick={() => {navigate('/'); signOut(auth)}}>Sign Out</button>
         </div>
         {/* ////////////////////////////////////////////////// */}
-      <button type='primary' className='btn btn-primary'>Pridėti</button>
       </div>
-      <form id="table-form">
-        <div className="table-group">
-            <div className='filter'>
-            <h4>Duomenų filtravimas</h4>
-            <select className='form-select' name='filters'>
-                <option>Pasirinkite imonę</option>
-            </select>
-            <select className='form-select' name='filters'>
-                <option>Pasirinkite paslaugą</option>
-            </select>
-            </div>
-            <h1>Darbų sarašas:</h1>
-        </div>
-      </form>
-      <table className="table table-hover table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Data</th>
-                <th>Klientas</th>
-                <th>Suteikta paslauga</th>
-                <th>Atlikto komponento testavunas</th>
-                <th>Pradeta</th>
-                <th>Baigta</th>
-                <th>Plačiau</th>
-            </tr>
-        </thead>    
-        <tbody id="work-list">
-        <View workss={workss}></View></tbody>      
-    </table>
     <h5>Pridėkite atlitką darbą</h5>
     <div className='form-container'>
         <form autoComplete='off' className='form-group' onSubmit={handleAddWorkSubmit}>
@@ -146,8 +129,28 @@ const Table = () => {
             <input type="submit" value="Saugoti" className="btn-primary btn"></input>
         </form>
     </div>
+    <form id="table-form">
+        <div className="table-group">
+            <h1>Darbų sarašas:</h1>
+        </div>
+      </form>
+      <Table  responsive className="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Klientas</th>
+                <th>Suteikta paslauga</th>
+                <th>Atlikto komponento testavunas</th>
+                <th>Pradeta</th>
+                <th>Baigta</th>
+                <th>Delete</th>
+            </tr>
+        </thead>    
+        <tbody id="work-list">
+        <View workss={workss} deleteWork={deleteWork}></View></tbody>      
+    </Table>
   </div>
   );
 };
 
-export default Table;
+export default Tables;
